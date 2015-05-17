@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <title>Document</title>
+
+</head>
+<body>
+
+<header>
+    <div class="container">
+            <div class="wrapper">
+                <div class="cell cell-left">
+                    <div class="logo">
+                        <div class="title"><a href="">РазКрас</a></div>
+                        <span class="description">Раскрасик по номерам</span>
+                    </div>
+                </div>
+                <div class="cell cell-right">
+                    <ul class="main-menu">
+                        <li><a href="/1">Главна</a></li>
+                        <li><a href="/2">Каталог</a></li>
+                        <li><a href="">Доставка</a></li>
+                        <li><a href="">Отзывы</a></li>
+                        <li><a href="">Контакты</a></li>
+                    </ul>
+                    <em class="icon-menu"></em>
+                    <a href="#search-popup" id="search-toggle" title="Search"><em class="icon-search"></em></a>
+                    <a id="shopping-cart-link" href="/personal/cart/" title="Shopping cart"><em class="icon-cart"></em></a>
+                    <div id="search" class="search-container">
+                        <form class="searchform">
+                            <input value="" name="s" placeholder="Поиск" type="text">
+                            <input value="" type="submit">
+                        </form>
+                   </div>
+                </div>
+            </div>
+            <div class="sep"></div>
+        </div>
+</header>
+<div class="gap"></div>
+<section id="content" class="container">
+    <div class="slider">
+        <img src="http://cerchez.com/magic-shop/wp-content/uploads/sites/24/2014/11/discounts-frozen-lake-near-forest.jpg" alt="30% winter discounts in the Magic Shop!" height="195" width="580">
+    </div>
+</section>
+<footer></footer>
+<script>
+
+
+$(function(){
+
+//Меню
+     $('.icon-menu').on('click', function(e){
+        $('.main-menu').toggleClass('show');
+         e.preventDefault();
+            }
+    );
+     $(document).click(function(e) {
+        if ($(e.target).closest(".main-menu").length || $(e.target).closest(".icon-menu").length) return;
+        $(".main-menu").removeClass('show')
+        e.stopPropagation();
+      });
+
+//    Форма поиска
+     	jQuery('#search-toggle').on('click', function (e) {
+		jQuery('.wrapper').addClass("show-search-form");
+		window.setTimeout(function() {
+			jQuery('.searchform input[type=text]').focus();
+		}, 50);
+		e.preventDefault();
+	});
+
+        jQuery('header .searchform input[type=text]').keyup(function(e) {
+		if (e.keyCode == 27) {
+			jQuery('.wrapper').removeClass('show-search-form');
+		}
+	});
+
+        jQuery(document).click(function(e) {
+            if (jQuery(e.target).parents('.searchform').length > 0 || jQuery(e.target).parents('#search-toggle').length > 0) { return; }
+            jQuery('.wrapper').removeClass('show-search-form');
+        });
+//Хедер
+
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 50){
+        $('header').addClass("sticky");
+        $('.gap').show();
+        }
+        else{
+        $('header').removeClass("sticky");
+        $('.gap').hide();
+        }
+    });
+});
+
+
+//    	jQuery('#go-to-top-link').click(function(e){
+//		jQuery('html, body').animate({ scrollTop: 0 }, { duration: 300, easing: "swing" });
+//		e.preventDefault();
+//		return false;
+//	});
+//
+//	var belowHeaderLimit = jQuery('#header > .container').height() + 10;
+//	jQuery(window).scroll(function() {
+//		var isBelowHeader = (jQuery(window).scrollTop() > belowHeaderLimit);
+//		jQuery('#go-to-top-link').toggleClass("active", isBelowHeader);
+//		if ( ! jQuery('body').hasClass('has-sticky-header') || (jQuery('body').hasClass('fixed-header') && jQuery('body').hasClass('show-offcanvas-menu')) ) { return; }
+//		if (isBelowHeader) {
+//			jQuery('body:not(.fixed-header) .offcanvas-content').css('padding-top', jQuery('#header').outerHeight() + 50 + 'px');
+//		} else {
+//			jQuery('body.fixed-header .offcanvas-content').css('padding-top', 0);
+//		}
+//		jQuery('body').toggleClass("fixed-header", isBelowHeader);
+//	}).scroll();
+//
+//
+//});
+
+//
+//        $(function() {
+//            $('.icon-search').on('click', function (e) {
+//                $('.menu-list').hide();
+//                $('header input[type="text"]').show();
+//            });
+//
+//                jQuery('header input[type=text]').keyup(function(e) {
+//            if (e.keyCode == 27) {
+//                this.hide();
+//            }
+//        });
+//
+//    //        $('.container').on('click', function (e) {
+//    //            $('.menu-list').show();
+//    //            $('header input[type="text"]').hide();
+//    //        });
+//            $('.icon-menu').on('click', function (e) {
+//            $('.menu-list').slideToggle('slow');
+//        });
+//        });
+
+</script>
+</body>
+</html>
